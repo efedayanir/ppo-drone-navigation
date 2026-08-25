@@ -1,0 +1,108 @@
+project:
+  name: "drone_nav_research_hard"
+  
+environment:
+  world:
+    width: 10.0
+    height: 10.0
+
+  drone:
+    radius: 0.20
+    max_speed: 1.50
+    max_acceleration: 1.00
+    max_angular_speed: 2.20
+    initial_heading: 0.0
+
+  obstacles:
+    enabled: true
+    count_min: 2
+    count_max: 3
+    radius_min: 0.35
+    radius_max: 0.9
+    safe_spawn_margin: 0.80
+    safe_goal_margin: 0.80
+    safe_obstacle_margin: 0.25
+
+  goal:
+    radius: 0.40 
+    min_start_goal_distance: 2.8
+    max_sampling_tries: 5000
+
+  sensors:
+    num_rays: 16
+    max_range: 5.0
+    noise_std: 0.0
+    add_noise: false
+    normalize_readings: true
+
+  episode:
+    dt: 0.10
+    max_steps: 260 
+    terminate_on_collision: true
+    terminate_on_goal: true
+
+  observation:
+    include_goal_relative: true
+    include_velocity: true
+    include_heading: true
+    include_angular_velocity: true
+    include_previous_action: true
+    normalize_goal_delta: true
+    normalize_velocity: true
+
+  action:
+    heading_min: -3.141592653589793
+    heading_max: 3.141592653589793
+    speed_min: 0.0
+    speed_max: 1.5
+
+control:
+  type: "pd"
+
+  heading:
+    kp: 3.2
+    kd: 0.55
+    ki: 0.0
+    integral_limit: 0.5
+
+  speed:
+    kp: 2.2
+    kd: 0.15
+    ki: 0.0
+    integral_limit: 0.5
+
+  limits:
+    max_linear_acceleration: 1.0
+    max_angular_velocity: 2.2
+
+reward:
+  goal_reward: 220.0
+  collision_penalty: 55.0
+  timeout_penalty: 25.0 
+
+  progress_weight: 60.0
+  step_penalty: 0.8
+
+  smoothness_weight: 0.0
+  stall_penalty: 1.5 
+  low_speed_penalty: 0.15 
+  stuck_penalty: 5.0
+
+  stuck_progress_epsilon: 0.002 
+  stuck_speed_threshold: 0.02
+  stuck_patience: 90 
+
+  action_speed_max: 1.5
+
+  shaping:
+    clip_progress: true
+    progress_clip_min: -0.25
+    progress_clip_max: 0.25
+    progress_normalizer: 1.0
+
+    stall_progress_threshold: 0.0005
+    stall_speed_threshold: 0.02
+    stall_distance_gate: 0.5
+
+    min_speed_reward_gate: 0.03
+    alignment_weight: 0.0

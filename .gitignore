@@ -1,0 +1,67 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+
+# Virtual environments
+.venv/
+venv/
+
+# Test and coverage artifacts
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+.mypy_cache/
+.ruff_cache/
+
+# Build artifacts
+build/
+dist/
+results/
+assets_old/
+*.egg-info/
+pip-wheel-metadata/
+
+# Local experiment outputs
+results/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# OS and editor files
+.DS_Store
+Thumbs.db
+desktop.ini
+.idea/
+.vscode/
+
+# Logs
+*.log
+
+# Python tooling
+.tox/
+.nox/
+
+# Secrets / local env files
+.env
+.env.*
+!.env.example
+
+# Model/checkpoint artifacts
+*.pt
+*.pth
+*.pkl
+*.joblib
+*.zip
+*.npy
+*.npz
+*.ckpt
+
+# Experiment trackers
+wandb/
+mlruns/
+logs/
+events.out.tfevents.*
